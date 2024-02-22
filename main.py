@@ -13,7 +13,10 @@ def mostrar_menu():
     print("1. Agregar tarea")
     print("2. Listar tareas")
     print("3. Marcar tarea como completada")
-    print("4. Salir")
+    print("4. Eliminar tarea")
+    print("5. Listar tareas completadas")
+    print("6. Listar tareas no completadas")
+    print("7. Salir")
 
 # Funcion para agregar tarea
 def agregar_tarea():
@@ -41,11 +44,24 @@ def marcar_completada():
     except ValueError:
         print("Por favor, ingrese un número válido.")
 
-# Bucle de menu
+# Función para eliminar tarea
+def eliminar_tarea():
+    listar_tareas()
+    try:
+        idx_tarea = int(input("Ingrese el número de la tarea que desea eliminar: "))
+        if 1 <= idx_tarea <= len(tareas):
+            tarea_eliminada = tareas.pop(idx_tarea - 1)
+            print(f"Tarea '{tarea_eliminada.descripcion}' eliminada.")
+        else:
+            print("Número de tarea no válido.")
+    except ValueError:
+        print("Por favor, ingrese un número válido.")
+
+# Bucle de menú
 while True:
     mostrar_menu()
 
-    opcion = input("Seleccione una opcion: ")
+    opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
         agregar_tarea()
@@ -54,7 +70,9 @@ while True:
     elif opcion == "3":
         marcar_completada()
     elif opcion == "4":
+        eliminar_tarea()
+    elif opcion == "7":
         print("Saliendo del programa...")
         break
     else:
-        print("Opcion no valida, intente de nuevo.")
+        print("Opción no válida, intente de nuevo.")
