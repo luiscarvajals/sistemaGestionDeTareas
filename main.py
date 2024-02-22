@@ -57,6 +57,26 @@ def eliminar_tarea():
     except ValueError:
         print("Por favor, ingrese un número válido.")
 
+# Función para listar tareas completadas
+def listar_tareas_completadas():
+    completadas = [tarea for tarea in tareas if tarea.completada]
+    if completadas:
+        print("\n--- Tareas Completadas ---")
+        for idx, tarea in enumerate(completadas, start=1):
+            print(f"{idx}. Descripción: {tarea.descripcion}")
+    else:
+        print("No hay tareas completadas.")
+
+# Función para listar tareas no completadas
+def listar_tareas_no_completadas():
+    no_completadas = [tarea for tarea in tareas if not tarea.completada]
+    if no_completadas:
+        print("\n--- Tareas No Completadas ---")
+        for idx, tarea in enumerate(no_completadas, start=1):
+            print(f"{idx}. Descripción: {tarea.descripcion}")
+    else:
+        print("No hay tareas no completadas.")
+
 # Bucle de menú
 while True:
     mostrar_menu()
@@ -71,6 +91,10 @@ while True:
         marcar_completada()
     elif opcion == "4":
         eliminar_tarea()
+    elif opcion == "5":
+        listar_tareas_completadas()
+    elif opcion == "6":
+        listar_tareas_no_completadas()
     elif opcion == "7":
         print("Saliendo del programa...")
         break
