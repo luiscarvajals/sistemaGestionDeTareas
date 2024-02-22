@@ -12,7 +12,8 @@ def mostrar_menu():
     print("\n*** Sistema de Gestion de Tareas ***")
     print("1. Agregar tarea")
     print("2. Listar tareas")
-    print("3. Salir")
+    print("3. Marcar tarea como completada")
+    print("4. Salir")
 
 # Funcion para agregar tarea
 def agregar_tarea():
@@ -27,6 +28,19 @@ def listar_tareas():
     for idx, tarea in enumerate(tareas, start=1):
         print(f"{idx}. Descripcion: {tarea.descripcion} - Completada: {tarea.completada}")
 
+# Función para marcar tarea como completada
+def marcar_completada():
+    listar_tareas()
+    try:
+        idx_tarea = int(input("Ingrese el número de la tarea que desea marcar como completada: "))
+        if 1 <= idx_tarea <= len(tareas):
+            tareas[idx_tarea - 1].completada = True
+            print(f"Tarea '{tareas[idx_tarea - 1].descripcion}' marcada como completada.")
+        else:
+            print("Número de tarea no válido.")
+    except ValueError:
+        print("Por favor, ingrese un número válido.")
+
 # Bucle de menu
 while True:
     mostrar_menu()
@@ -38,6 +52,8 @@ while True:
     elif opcion == "2":
         listar_tareas()
     elif opcion == "3":
+        marcar_completada()
+    elif opcion == "4":
         print("Saliendo del programa...")
         break
     else:
